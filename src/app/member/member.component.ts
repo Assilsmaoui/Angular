@@ -16,5 +16,13 @@ export class MemberComponent implements OnInit {
       this.dataSource=data
     })//entre view et service 
   }
+  delete(id: string):void {//passage 1 et 4
+    this.MS.deleteMember(id).subscribe((data) => {
+      this.MS.GetAllMembers().subscribe((data)=>{
+        //action
+        this.dataSource=data
+      })
+    })
+  }
   displayedColumns: string[] = ['ID', 'CIN', 'Name', 'Type','createdate','icon'];
 }

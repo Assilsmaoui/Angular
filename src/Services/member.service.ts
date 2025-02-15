@@ -16,4 +16,12 @@ GetAllMembers():Observable<Member[]>{
  {
   return this.http.post<void>('http://localhost:3000/membres',member)//2
  }
+ deleteMember(id:string):Observable<void>//3
+ {
+
+ return this.http.delete<void>(`http://localhost:3000/membres/${id}`)//2
+ }
+ getMumberById(id:string):Observable<Member>{
+  return this.http.get<Member>(`http://localhost:3000/membres/${id}`)
+ }
 }

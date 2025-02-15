@@ -1,13 +1,6 @@
 {
   "membres": [
     {
-      "id": "123",
-      "cin": "1254",
-      "name": "imen",
-      "type": "teacher",
-      "createdate": "12/12"
-    },
-    {
       "id": "12345",
       "cin": "1254",
       "name": "imen",

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MemberService } from 'src/Services/member.service';
 
 @Component({
@@ -10,18 +10,34 @@ import { MemberService } from 'src/Services/member.service';
 })
 export class MemberFormComponent {
   //injection de dependance
-  constructor(private MS:MemberService,private router :Router)
+  constructor(private MS:MemberService,private router :Router,private activateRoute:ActivatedRoute )
   {}
   
 form !:FormGroup;
 //intialiser les valeur par defaut null
 ngOnInit(){
+  //recuprer la route active 
+  const idcourant=this.activateRoute.snapshot.params['id']
+  console.log("idcourant",idcourant)
+  if(idcourant){
+this.MS.getMumberById(idcourant).subscribe((a)=>{
   this.form=new FormGroup({
-cin:new FormControl(null),
-name:new FormControl(null),
-type:new FormControl(null),
-createdate:new FormControl(null),
-  })
+    cin:new FormControl(a.cin),
+    name:new FormControl(a.name),
+    type:new FormControl(a.type),
+    createdate:new FormControl(a.createdate)
+})
+})
+  }else{ this.form=new FormGroup({
+    cin:new FormControl(null),
+    name:new FormControl(null),
+    type:new FormControl(null),
+    createdate:new FormControl(null),
+      })}
+  //chercher id dans la route
+  //si id existe et une valeur je suis dans edit 
+  //sinon je suis dans create 
+ 
 }
 sub(){
   console.log(this.form.value)//passage 1 et 4 

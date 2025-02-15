@@ -6,10 +6,21 @@ import { MemberFormComponent } from './member-form/member-form.component';
 const routes: Routes = [
   {
     path:'',
+pathMatch:'full',
     component:MemberComponent
   },{
     path:'create',
+    pathMatch:'full',
     component:MemberFormComponent
+  },
+  {
+    path:'edit/:id',
+    pathMatch:'full',
+    component:MemberFormComponent
+  },
+  {
+    path:'**',
+    component:MemberComponent
   }
 ];
 
