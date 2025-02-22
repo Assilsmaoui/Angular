@@ -24,4 +24,7 @@ GetAllMembers():Observable<Member[]>{
  getMumberById(id:string):Observable<Member>{
   return this.http.get<Member>(`http://localhost:3000/membres/${id}`)
  }
+ updateMember(idcourant:string,member:Member):Observable<void>{
+  return this.http.put<void>(`http://localhost:3000/membres/${idcourant}`,member)
+ }
 }

@@ -17,7 +17,7 @@ form !:FormGroup;
 //intialiser les valeur par defaut null
 ngOnInit(){
   //recuprer la route active 
-  const idcourant=this.activateRoute.snapshot.params['id']
+  const idcourant=this.activateRoute.snapshot.params['id']//recuperer id
   console.log("idcourant",idcourant)
   if(idcourant){
 this.MS.getMumberById(idcourant).subscribe((a)=>{
@@ -40,8 +40,18 @@ this.MS.getMumberById(idcourant).subscribe((a)=>{
  
 }
 sub(){
+  const idcourant=this.activateRoute.snapshot.params['id']
+  if(idcourant)//on utiliser update
+    {
+      this.MS.updateMember(idcourant,this.form.value).subscribe(()=>{
+        this.router.navigate([''])
+      })
+    }
+  else{//utiliser ajouter 
   console.log(this.form.value)//passage 1 et 4 
   this.MS.addMember(this.form.value).subscribe(()=>{
     this.router.navigate([''])
 })
-}}
+  }
+}
+}
